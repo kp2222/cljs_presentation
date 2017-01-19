@@ -3,6 +3,8 @@
 
 Audience already know a bit of Clojure. This talk won't cover basics of Clojure like syntax etc for the sake of time.
 
+### 
+
 ### Clojure Script Hello world
 
 ```Clojure
@@ -13,15 +15,37 @@ Audience already know a bit of Clojure. This talk won't cover basics of Clojure 
 (println "Hello world!")
 ```
 
-#### Create the build config
+### Compiling a cljs file just using the ClojureScript compiler 
+
+#### Fetch the stand alone clojurescript compiler from (here)[https://github.com/clojure/clojurescript/releases/download/r1.9.293/cljs.jar]
+
+#### Create the build config (build.clj)
 
 ```Clojure
+
 (require 'cljs.build.api)
 
 (cljs.build.api/build "src"
- {:output-to "out/main.js"})
+ {
+ :output-to "out/main.js"})
 
 ```
+
+#### Now compile the java -cp cljs.jar:src clojure.main build.clj
+
+#### Create an index.html file to load the compiled output
+
+Now that we have the compiled javascript output, we can run this and see if it works. The easiest way to run this code sample is load this file in web browser. For this we need to create an html skelton.
+
+```
+<html>
+    <body>
+        <script type="text/javascript" src="out/main.js"></script>
+    </body>
+</html>
+```o
+
+
 
 #### Compile using the ClojureScript compiler
 
@@ -57,7 +81,7 @@ cljs.core.println.call(null,"Hello world!");
 
 
 
-### Compiling a cljs file just using the ClojureScript compiler
+
 ### How does it work?
 ### Different Javascript platforms that ClojureScript supports
 ### Major differences from Clojure.
